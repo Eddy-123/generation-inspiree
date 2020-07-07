@@ -21,7 +21,18 @@ class Controller
 		if ($this->rendered) {
 			return false;
 		}
+
+		//Menu pages
+		$this->loadModel('Post');
+		$d['pages'] = $this->Post->find(
+			array(
+				'conditions' => array('type' => 'page', 'online' => 1)
+			)
+		);
+		$this->set($d);
+	
 		extract($this->vars);
+
 		if (strpos($view, '/')===0) {
 			$view = ROOT.DS.'view'.$view.'.php';
 		} else {

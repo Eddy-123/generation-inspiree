@@ -1,3 +1,131 @@
+.main-article-title{
+	display: inline-block;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: 5px;
+	line-height: 1.1em;
+}
+
+.main-article-category,.author-name:hover,.sub-article-author:hover{
+	color: rgba(0,0,0,0);
+}
+
+.main-article-category:hover,.main-title:hover,.author-name,.sub-article-title:hover,.sub-article-category:hover,.demo-link:hover{
+	text-decoration: underline;
+}
+
+.recent-articles{
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+.sub-article-title{
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.sub-article-category,.sub-article-date{
+	color: rgba(0,0,0,0.5);
+	font-size: 0.8em;
+}
+
+.sub-article-author{
+	text-decoration: underline;
+	font-size: 0.8em;
+}
+
+.demo-link{
+	color: blue;
+}
+
+footer{
+	width: 100%;
+	color: #ffffff;
+	background-color: #343a40;
+	text-align: center;
+}
+
+.copyright{
+	color: white;
+	text-align: right;
+}
+
 body{
-    background: red;
+	line-height: 1.2em;
+	font-size: 1.3em;
+	font-family: verdana, "Arial Black", "Times New Roman", Arial, serif;
+	background: rgba(255, 255, 255, 1);
+}
+.article{
+	text-align: justify;
+	margin-top: 15px;
+}
+
+.article-hero{
+	margin-top: 5px;
+	text-align: justify;
+}
+
+@media screen and (min-width: 600px) {
+	.article-hero{
+		margin-top: 20px;
+	}
+}
+
+
+.versets{
+	color: rgba(01, 41, 89, 1); /*#014189*/   /*#0065C9*/
+}
+
+.versets2{
+    color: rgba(01, 41, 89, 0.5); /*#014189*/   /*#0065C9*/
+}
+.signature{
+	text-align: right;
+	color: rgba(01, 41, 89, 1);
+}
+
+.vision{
+	margin-bottom: 50px;
+}
+
+.about{
+	margin-bottom: 100%;
+}
+
+.contact{
+	margin-bottom: 100%;
+}
+
+.inspiree{
+  font-size : 1.2em;  
+  color: rgba(01, 41, 89, 1);
+}
+
+.about-how{
+    color: rgba(01, 41, 89, 1);
+}
+
+.about-why{
+    color: rgba(01, 41, 89, 1);
+}
+
+.justification{
+    text-align: justify;
+	
+}
+.ressentir{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.equipe{
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/*  COUNTER */
+
+#counter{
+  visibility: hidden;
 }

@@ -1,4 +1,12 @@
 <?php $title_for_layout = $page->name; ?>
-<h1><?= $page->name ?></h1>
+
+<?php /* $page->name */?>
+
+<?php
+$file = ROOT.DS."view".DS."includes".DS.$page->alias.".php";
+if(file_exists($file)){
+    require $file;
+}
+?>
+
 <?= $page->content ?>
-<?= ROOT.DS.'view'.DS.'layout'.DS.$this->layout.'.php'; ?>

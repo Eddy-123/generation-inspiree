@@ -9,6 +9,11 @@
 
 		public function __construct()
 		{
+
+			//Initialize $table
+			if ($this->table === false) {
+				$this->table = strtolower(get_class($this)).'s';
+			}
 			//Connexion to the database
 			$conf = Conf::$databases[$this->conf];
 			if (isset(Model::$connections[$this->conf])) {
@@ -34,10 +39,6 @@
 				
 			}
 
-			//Initialize $table
-			if ($this->table === false) {
-				$this->table = strtolower(get_class($this)).'s';
-			}
 		}
 
 		public function find($req){			

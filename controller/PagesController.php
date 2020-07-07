@@ -9,16 +9,16 @@ class PagesController extends Controller
 		$this->loadModel('Post');
 		$d['page'] = $this->Post->findFirst(
 			array(
-				'conditions' => array('id' => $id, 'type' => 'page')
+				'conditions' => array('id' => $id, 'type' => 'page', 'online' => 1)
 			)
 		);
 		if (empty($d['page'])) {
 			$this->e404('Page introuvable');
-		}		
-
-		$d['pages'] = $this->Post->find(array(
-			'conditions' => array('type' => 'page')
-		));
+		}	
 		$this->set($d);
+	}
+
+	public function register(){
+		
 	}
 }
