@@ -14,3 +14,25 @@
         </div>
     </div>
 </main>
+<?php
+for($i=0; $i<5; $i++){
+    echo "
+    <div class='row d-block mt-5'>
+    <h3 class='text-left'>
+    Titre de la publication
+    </h3>
+    <p class='text-justify'>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nostrum! 
+    Enim temporibus, natus optio accusantium eligendi accusamus libero porro perspiciatis 
+    laboriosam ullam sit reiciendis ea, facere assumenda quos. Nam, iusto!
+    </p>
+    <h4 class='text-right text-muted'>
+    Auteur
+    </h4>
+    <hr>
+    </div>
+    ";
+}
+
+
+?>

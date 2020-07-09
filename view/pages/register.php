@@ -1,7 +1,8 @@
 <?php
+/*
 if(!empty($_POST)){
     $errors = array();
-    if(empty($_POST['username']) || !preg_match('/^[a-z0-9_]+$/', $_POST['username'])){
+    if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])){
         $errors['username'] = "Votre pseudo n'est pas valide (alphanumerique)";
     }
 
@@ -9,11 +10,20 @@ if(!empty($_POST)){
         $errors['email'] = "Votre email n'est pas valide";
     }
 
+    if(empty($_POST['password'] || $_POST['password'] != $_POST['password_confirm'])){
+      $errors['password'] = "Vous devez rentrer un mot de passe valide";
+    }
+
 
     debug($_POST);
     echo "<br><br><br>";
     debug($errors);
 }
+*/
+
+debug($_POST);
+echo "<br><br><br>";
+debug($errors);
 ?>
 
 <h1>S'inscrire</h1>

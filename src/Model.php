@@ -72,4 +72,13 @@
 		public function findFirst($req){
 			return current($this->find($req));
 		}
+
+		public function register($username, $password, $email){			
+			$sql = "INSERT INTO users SET username = ?, password = ?, email = ?";
+			$pre = $this->db->prepare($sql);
+			$password = password_hash($password, PASSWORD_BCRYPT);
+			$pre->execute([$username, $password, $email]);
+			die("Votre compte a bien été créé !");
+		}
+
 	}
