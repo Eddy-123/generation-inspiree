@@ -21,18 +21,28 @@ class PagesController extends Controller
 	public function register(){
 		$errors = array();
 		if(!empty($_POST)){
-			$this->loadModel('Post');
+			$this->loadModel('User');
 			if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])){
 				$errors['username'] = "Votre pseudo n'est pas valide (alphanumerique)";
 			} else {
-				//$req = $this->Post->
+				$username = $_POST['username'];
+				$user = $this->User->getUserId("username", $username);
+				if($user){
+					$errors['username'] = "Ce pseudo est déja pris";
+				}
 			}
 		
 			if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 				$errors['email'] = "Votre email n'est pas valide";
+			} else {
+				$email = $_POST['email'];
+				$user = $this->User->getUserId("email", $email);
+				if($user){
+					$errors['email'] = "Cet email est déja utilisé pour un autre compte";
+				}
 			}
 		
-			if(empty($_POST['password'] || $_POST['password'] != $_POST['password_confirm'])){
+			if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
 			  $errors['password'] = "Vous devez rentrer un mot de passe valide";
 			}
 		
@@ -43,7 +53,7 @@ class PagesController extends Controller
 		//Register user if there is no error
 		if(empty($errors) && !empty($_POST)){
 			
-			$this->Post->register($_POST['username'], $_POST['password'], $_POST['email']);
+			$this->User->register($_POST['username'], $_POST['password'], $_POST['email']);
 		}
 	}
 }

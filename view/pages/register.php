@@ -19,11 +19,24 @@ if(!empty($_POST)){
     echo "<br><br><br>";
     debug($errors);
 }
-*/
-
 debug($_POST);
 echo "<br><br><br>";
 debug($errors);
+*/
+if(!empty($errors)){
+  echo "
+  <div class='alert alert-danger'>
+  <p>Veuillez remplir le formulaire correctement</p>
+  </div>    
+  ";
+  echo "<ul>";
+  foreach($errors as $error){
+    echo "
+      <li>$error</li>
+    ";
+  }
+  echo "</ul>";
+}
 ?>
 
 <h1>S'inscrire</h1>
