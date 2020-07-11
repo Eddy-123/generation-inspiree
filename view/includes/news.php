@@ -28,6 +28,8 @@ for($i=0; $i<5; $i++){
     </p>
     <h4 class='text-right text-muted'>
     Auteur
+    <br>
+    Date
     </h4>
     <hr>
     </div>

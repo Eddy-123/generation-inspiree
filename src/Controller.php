@@ -12,6 +12,7 @@ class Controller
 
 	function __construct($request){
 		$this->request = $request;
+
 	}
 
 	/**

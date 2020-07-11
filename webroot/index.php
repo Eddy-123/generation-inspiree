@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 	$debut = microtime(true);
 
 	define('WEBROOT', dirname(__FILE__));

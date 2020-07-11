@@ -1,3 +1,10 @@
+<?php
+/*
+if(session_status() == PHP_SESSION_NONE){
+  session_start();
+}
+*/
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,11 +33,28 @@
       </li>
     <?php } ?>
     <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/register' ?>">S'inscrire</a></li>
-    <li class="nav-item"><a class="nav-link" href="login.php">Se connecter</a></li>
+    <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/login' ?>">Se connecter</a></li>
     </ul>
   </div>
 </nav>
 <div class="container">
+<?php
+//debug($_SESSION);
+?>
+
+<?php
+if(isset($_SESSION['flash'])){
+  foreach($_SESSION['flash'] as $type => $message){
+    ?>
+    <div class="alert alert-<?= $type ?>"><?= $message ?></div>
+    <?php
+  }
+  
+unset($_SESSION['flash']);
+}
+
+?>
+
 <?= $content_for_layout."<br><br>" ?>
 </div>
 
