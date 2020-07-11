@@ -11,9 +11,6 @@ function debug($variable){
 			}
 		}
 		echo "</ol>";
-		echo "<pre>";
-		print_r($var);
-		echo "</pre>";
 }
 
 function str_random($length){

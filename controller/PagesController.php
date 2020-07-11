@@ -72,7 +72,10 @@ class PagesController extends Controller
 	}
 
 	public function login(){
-		
+		if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
+			$this->loadModel("User");
+			$this->User->login($_POST['username'], $_POST['password']);
+		}
 	}
 
 	public function confirm($userId, $token){
@@ -100,5 +103,14 @@ class PagesController extends Controller
 
 	public function account(){
 
+	}
+
+	public function disconnect(){
+		unset($_SESSION['auth']);
+		$_SESSION['flash']['success'] = "Vous êtes maintenant déconnecté";
+		/*
+		$actuality = BASE_URL.DS."pages".DS."view".DS."1";
+		header("Location: $actuality");
+		*/
 	}
 }

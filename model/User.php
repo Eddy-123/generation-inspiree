@@ -44,4 +44,20 @@
 			
 		}
 
+		public function login($username, $password){
+			$req = $this->db->prepare("SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL");
+			$req->execute(array(
+				'username' => $username
+			));
+			$user = $req->fetch();
+			//debug($user);
+			if(password_verify($password, $user['password'])){
+				$_SESSION['auth'] = $user['id'];
+				$account = BASE_URL.DS."pages".DS."account";
+				header("Location: $account");
+			}else{
+				$_SESSION['flash']['danger'] = "Identifiant ou mot de passe incorrect";
+			}
+		}
+
 	}

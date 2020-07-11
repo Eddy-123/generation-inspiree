@@ -32,8 +32,12 @@ if(session_status() == PHP_SESSION_NONE){
         <a class="nav-link" href="<?= BASE_URL.'/pages/view/'.$page->id ?>"><?= $page->name ?></a>
       </li>
     <?php } ?>
-    <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/register' ?>">S'inscrire</a></li>
+    <?php if(isset($_SESSION['auth'])): ?>
+      <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/disconnect' ?>">Déconnexion</a></li>
+    <?php else : ?>
+      <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/register' ?>">S'inscrire</a></li>
     <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/login' ?>">Se connecter</a></li>
+    <?php endif; ?>
     </ul>
   </div>
 </nav>
