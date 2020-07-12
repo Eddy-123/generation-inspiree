@@ -106,6 +106,13 @@ class PagesController extends Controller
 		$this->loadModel("User");
 		$user = $this->User->getUserFromId($_SESSION['auth']);
 		$this->set($user);
+		if(!empty($_POST) && !empty($_POST['post']) && !empty($_POST['title'])){
+			$post = $_POST['post'];
+			$title = $_POST['title'];
+			$this->loadModel("Post");
+			$this->Post->createPost($user['id'], $title, $post);
+			$_SESSION['flash']['success'] = "Merçi pour votre publication, un email vous sera envoyé dès qu'elle sera affichée sur Génération inspirée";
+		}
 	}
 
 	public function disconnect(){
