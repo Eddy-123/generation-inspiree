@@ -102,7 +102,10 @@ class PagesController extends Controller
 	}
 
 	public function account(){
-
+		loggedOnly();
+		$this->loadModel("User");
+		$user = $this->User->getUserFromId($_SESSION['auth']);
+		$this->set($user);
 	}
 
 	public function disconnect(){
@@ -112,5 +115,39 @@ class PagesController extends Controller
 		$actuality = BASE_URL.DS."pages".DS."view".DS."1";
 		header("Location: $actuality");
 		*/
+	}
+
+	public function forget(){
+		if(!empty($_POST) && !empty($_POST['email'])){
+			$this->loadModel("User");
+			$user = $this->User->getUserFromEmail($_POST['email']);
+			$userId = $user['id'];
+			if($user){
+				$reset_token = str_random(60);
+				$this->User->updateToken($reset_token, $user['id']);
+				mail($_POST['email'], "Génération inspirée : Réninitialiser votre mot de passe", "Afin de valider votre compte, nous vous prions de cliquer sur ce lien\n\nhttp://localhost/generation-inspiree/pages/reset/$userId/$reset_token");
+				$_SESSION['flash']['success'] = "Veuillez consulter votre boîte email pour réinitialiser votre mot de passe";
+			}else{
+				$_SESSION['flash']['danger'] = "Aucun compte ne correspond à cette adresse";
+			}
+		}		
+	}
+
+	public function reset($id=null, $token=null){
+		if($id != null && $token != null){
+			$this->loadModel("User");
+			$user = $this->User->getUserToReset($id, $token);
+			if($user){
+				if(!empty($_POST)){
+					if(!empty($_POST['password']) AND $_POST['password'] == $_POST['password_confirm']){
+						$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+						$this->User->resetPassword($id, $password);
+						$_SESSION['flash']['success'] = "Votre mot de passe a bien été modifié";
+					}
+				}
+			}else{
+				$_SESSION['flash']['danger'] = "Le lien de réinitialisation n'est plus valide";
+			}
+		}
 	}
 }

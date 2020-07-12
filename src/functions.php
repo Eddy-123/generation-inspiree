@@ -23,3 +23,11 @@ function sessionStart(){
         session_start();
       }
 }
+
+function loggedOnly(){
+	if(!isset($_SESSION['auth'])){
+		$loginPage = BASE_URL."/pages/login";
+		header("Location: $loginPage");
+		exit();
+	}
+}

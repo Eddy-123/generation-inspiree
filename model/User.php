@@ -28,7 +28,33 @@
 			$pre = $this->db->prepare($sql);
 			$pre->execute([$value]);
 			$response = $pre->fetch();
+
 			return $response['id'];
+		}
+		
+		public function getUserFromId($id){
+			$sql = "SELECT * FROM users WHERE id = ?";
+			$pre = $this->db->prepare($sql);
+			$pre->execute([$id]);
+			$response = $pre->fetch();
+			return $response;
+		}
+
+		
+		public function getUserToReset($id, $token){
+			$sql = "SELECT * FROM users WHERE id = ? AND reset_token = ? AND reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)";
+			$pre = $this->db->prepare($sql);
+			$pre->execute([$id, $token]);
+			$user = $pre->fetch();
+			return $user;
+		}
+
+		public function getUserFromEmail($email){
+			$sql = "SELECT * FROM users WHERE email = ?";
+			$pre = $this->db->prepare($sql);
+			$pre->execute([$email]);
+			$response = $pre->fetch();
+			return $response;
 		}
 		
 		public function getToken($userId){
@@ -36,6 +62,11 @@
 			$req->execute(array($userId));
 			$result = $req->fetch();
 			return $result['token'];
+		}
+
+		public function updateToken($resetToken, $userId){
+			$req = $this->db->prepare("UPDATE users SET reset_token = ?, reset_at = NOW() WHERE id = ?");
+			$req->execute(array($resetToken, $userId));
 		}
 
 		public function	updateConfirmationInfo($userId){
@@ -58,6 +89,11 @@
 			}else{
 				$_SESSION['flash']['danger'] = "Identifiant ou mot de passe incorrect";
 			}
+		}
+
+		public function resetPassword($id, $password){
+			$req = $this->db->prepare("UPDATE users SET password = ? WHERE id = ?");
+			$req->execute(array($password, $id));
 		}
 
 	}
