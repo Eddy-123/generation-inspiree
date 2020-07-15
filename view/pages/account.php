@@ -12,3 +12,26 @@
   </div>
   <button type="submit" class="btn btn-primary">Partager</button>
 </form>
+
+<h1>Mes publications</h1>
+
+<?php
+
+foreach($posts as $post){
+  echo "
+  <div class='row d-block mt-5'>
+  <h3 class='text-left'>".
+  $post->name
+  ."</h3>
+  <p class='text-justify'>".
+  $post->content
+  ."</p>
+  <br>
+  Date
+  </h4>
+  <hr>
+  </div>
+  ";
+}
+
+?>

@@ -31,3 +31,20 @@ function loggedOnly(){
 		exit();
 	}
 }
+
+function getUsernameFromArray($users, $id){
+	$continue = true;
+	foreach($users as $user){
+		if($user['id'] == $id){
+			$username = $user['username'];
+		break;
+		}
+	}
+	return $username;
+}
+
+function translateDate($date){
+	
+
+	return $date;
+}

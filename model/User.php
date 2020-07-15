@@ -22,6 +22,13 @@
 			);
 		}
 
+		public function getUsers(){
+			$sql = "SELECT id, username FROM users";
+			$pre = $this->db->prepare($sql);
+			$pre->execute();
+			$users = $pre->fetchAll();
+			return $users;
+		}
 
 		public function getUserId($key, $value){
 			$sql = "SELECT id FROM users WHERE $key = ?";

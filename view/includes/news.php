@@ -15,22 +15,22 @@
     </div>
 </main>
 <?php
-for($i=0; $i<5; $i++){
+//debug($users);
+foreach($posts as $post){
+    //print_r($post);
     echo "
     <div class='row d-block mt-5'>
-    <h3 class='text-left'>
-    Titre de la publication
-    </h3>
-    <p class='text-justify'>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, nostrum! 
-    Enim temporibus, natus optio accusantium eligendi accusamus libero porro perspiciatis 
-    laboriosam ullam sit reiciendis ea, facere assumenda quos. Nam, iusto!
-    </p>
-    <h4 class='text-right text-muted'>
-    Auteur
-    <br>
-    Date
-    </h4>
+    <h3 class='text-left'>".
+    $post->name
+    ."</h3>
+    <p class='text-justify'>".
+    $post->content
+    ."</p>
+    <h4 class='text-right text-muted'>".
+    getUsernameFromArray($users, $post->user_id)
+    ."<br>".
+    translateDate($post->created)
+    ."</h4>
     <hr>
     </div>
     ";

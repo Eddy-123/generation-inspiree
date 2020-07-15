@@ -55,7 +55,6 @@ class Controller
 		} else {
 			$this->vars[$key] = $value;
 		}
-		
 	}
 
 	/**

@@ -6,6 +6,7 @@ class PagesController extends Controller
 	 * Send the page with $id and all pages to the view
 	 */
 	function view($id){
+		//Single page
 		$this->loadModel('Post');
 		$d['page'] = $this->Post->findFirst(
 			array(
@@ -15,7 +16,19 @@ class PagesController extends Controller
 		if (empty($d['page'])) {
 			$this->e404('Page introuvable');
 		}	
+
+		//Posts online
+		$d['posts'] = $this->Post->find(
+			array(
+				'conditions' => array('type' => 'post', 'online' => 1)
+			)
+		);
+
+		//Users
+		$this->loadModel('User');
+		$d['users'] = $this->User->getUsers();
 		$this->set($d);
+
 	}
 
 	public function register(){
@@ -105,7 +118,7 @@ class PagesController extends Controller
 		loggedOnly();
 		$this->loadModel("User");
 		$user = $this->User->getUserFromId($_SESSION['auth']);
-		$this->set($user);
+		//$this->set($user);
 		if(!empty($_POST) && !empty($_POST['post']) && !empty($_POST['title'])){
 			$post = $_POST['post'];
 			$title = $_POST['title'];
@@ -113,6 +126,18 @@ class PagesController extends Controller
 			$this->Post->createPost($user['id'], $title, $post);
 			$_SESSION['flash']['success'] = "Merçi pour votre publication, un email vous sera envoyé dès qu'elle sera affichée sur Génération inspirée";
 		}
+
+		$user_id = $user['id'];
+		$this->loadModel("Post");
+		$posts = $this->Post->find(array(
+			'conditions'	=>	"user_id = $user_id",
+			'order_by'		=>	"created DESC"
+		));
+		$set['user'] = $user;
+		$set['username'] = $user['username'];
+		$set['posts'] = $posts;
+		$this->set($set);
+		//$this->set($posts);
 	}
 
 	public function disconnect(){

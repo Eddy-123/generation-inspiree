@@ -76,8 +76,8 @@
 			}
 		}
 
-		if (isset($req['order by'])) {
-			$sql .= ' ORDER BY '.$req['order by'];
+		if (isset($req['order_by'])) {
+			$sql .= ' ORDER BY '.$req['order_by'];
 		}
 
 		if (isset($req['limit'])) {

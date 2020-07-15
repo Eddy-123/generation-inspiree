@@ -11,4 +11,11 @@
 				'user_id'	=>	$id
 			));			
 		}
+
+		public function acceptPost($id){
+			$this->db->prepare("UPDATE posts SET online = 1 WHERE id = ?")->execute(array($id));
+		}
+		public function refusePost($id){
+			$this->db->prepare("UPDATE posts SET online = 0 WHERE id = ?")->execute(array($id));
+		}
 	}
