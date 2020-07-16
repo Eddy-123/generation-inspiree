@@ -33,6 +33,7 @@ if(session_status() == PHP_SESSION_NONE){
       </li>
     <?php } ?>
     <?php if(isset($_SESSION['auth'])): ?>
+      <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/account' ?>">Mon compte</a></li>
       <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/disconnect' ?>">Déconnexion</a></li>
     <?php else : ?>
       <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/register' ?>">S'inscrire</a></li>

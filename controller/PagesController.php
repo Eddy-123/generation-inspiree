@@ -20,7 +20,8 @@ class PagesController extends Controller
 		//Posts online
 		$d['posts'] = $this->Post->find(
 			array(
-				'conditions' => array('type' => 'post', 'online' => 1)
+				'conditions' => array('type' => 'post', 'online' => 1),
+				'order_by'		=>	"created DESC"
 			)
 		);
 
@@ -122,6 +123,22 @@ class PagesController extends Controller
 		if(!empty($_POST) && !empty($_POST['post']) && !empty($_POST['title'])){
 			$post = $_POST['post'];
 			$title = $_POST['title'];
+
+			//Define color for the publication
+			if(isset($_POST['firstKeyWord'])){
+				$keyWord = $_POST['firstKeyWord'];
+				$post = preg_replace("#($keyWord)#", "<span class='text-primary'>$1</span>", $post);
+			}
+			if(isset($_POST['secondKeyWord'])){
+				$keyWord = $_POST['secondKeyWord'];
+				$post = preg_replace("#($keyWord)#", "<span class='text-primary'>$1</span>", $post);
+			}
+			if(isset($_POST['thirdKeyWord'])){
+				$keyWord = $_POST['thirdKeyWord'];
+				$post = preg_replace("#($keyWord)#", "<span class='text-primary'>$1</span>", $post);
+			}
+
+
 			$this->loadModel("Post");
 			$this->Post->createPost($user['id'], $title, $post);
 			$_SESSION['flash']['success'] = "Merçi pour votre publication, un email vous sera envoyé dès qu'elle sera affichée sur Génération inspirée";
@@ -129,15 +146,16 @@ class PagesController extends Controller
 
 		$user_id = $user['id'];
 		$this->loadModel("Post");
+		
 		$posts = $this->Post->find(array(
 			'conditions'	=>	"user_id = $user_id",
 			'order_by'		=>	"created DESC"
 		));
+		
 		$set['user'] = $user;
 		$set['username'] = $user['username'];
 		$set['posts'] = $posts;
 		$this->set($set);
-		//$this->set($posts);
 	}
 
 	public function disconnect(){

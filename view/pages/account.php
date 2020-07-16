@@ -10,6 +10,19 @@
     <label for="">Text à publier :</label>
     <input type="text" class="form-control" name="post" >
   </div>
+  <div class="form-group">
+    <label for="">Premier mot clé :</label>
+    <input type="text" class="form-control" name="firstKeyWord" >
+  </div>
+  <div class="form-group">
+    <label for="">Deuxième mot clé :</label>
+    <input type="text" class="form-control" name="secondKeyWord" >
+  </div>
+  <div class="form-group">
+    <label for="">Troisième mot clé :</label>
+    <input type="text" class="form-control" name="thirdKeyWord" >
+  </div>
+
   <button type="submit" class="btn btn-primary">Partager</button>
 </form>
 

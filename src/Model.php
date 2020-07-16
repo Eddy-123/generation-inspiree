@@ -93,4 +93,9 @@
 			return current($this->find($req));
 		}
 
+		public function dateFields($date){
+			$newDate = $this->db->prepare("SELECT DAY(?) as day, MONTH(?) as month, YEAR(?) as year")->execute([$date, $date, $date]);
+			return $newDate;
+		}
+
 	}

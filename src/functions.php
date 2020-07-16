@@ -44,7 +44,63 @@ function getUsernameFromArray($users, $id){
 }
 
 function translateDate($date){
-	
+	/*$s = '8/29/2011 11:16:12 AM';
+	$dt = new DateTime($s);
 
+	$date = $dt->format('m/d/Y');
+	$time = $dt->format('H:i:s');
+
+	echo $date, ' | ', $time;
+	*/
+	//$controller = new Controller();
+	if(preg_match("#^(?P<year>[0-9]+)-(?P<month>[0-9]+)-(?P<day>[0-9]+).*$#", $date, $match))
+	{
+		$day = $match['day'];
+		$month = $match['month'];
+		$year = $match['year'];
+
+		switch($month){
+			case 1 :
+				$month = "Janvier";
+			break;
+			case 2 :
+				$month = "Février";
+			break;
+			case 3 :
+				$month = "Mars";
+			break;
+			case 4 :
+				$month = "Avril";
+			break;
+			case 5 :
+				$month = "Mai";
+			break;
+			case 6 :
+				$month = "Juin";
+			break;
+			case 7 :
+				$month = "Juillet";
+			break;
+			case 8 :
+				$month = "Août";
+			break;
+			case 9 :
+				$month = "Septembre";
+			break;
+			case 10 :
+				$month = "Octobre";
+			break;
+			case 11 :
+				$month = "Novembre";
+			break;
+			case 12 :
+				$month = "Décembre";
+			break;
+			default:
+				$month = "";
+			break;
+		}
+	}
+	$date = $day." ".$month." ".$year;
 	return $date;
 }

@@ -15,7 +15,7 @@
     </div>
 </main>
 <?php
-//debug($users);
+//debug($posts);
 foreach($posts as $post){
     //print_r($post);
     echo "
@@ -26,7 +26,7 @@ foreach($posts as $post){
     <p class='text-justify'>".
     $post->content
     ."</p>
-    <h4 class='text-right text-muted'>".
+    <h4 class='text-right strong'>".
     getUsernameFromArray($users, $post->user_id)
     ."<br>".
     translateDate($post->created)
