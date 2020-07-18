@@ -20,7 +20,7 @@ class PostsController extends Controller {
 		$d['posts'] = $this->Post->find(array(
 			'fields' => 'id, name, online',
 			'conditions' => $conditions,
-			'order by' => 'created DESC, id DESC'
+			'order_by' => 'created DESC'
 		));
         $this->set($d);
         

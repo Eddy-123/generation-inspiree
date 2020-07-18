@@ -8,6 +8,7 @@
   </div>
 <div class="form-group">
     <label for="">Text à publier :</label>
+    <p>Les versets seront entourés d'étoiles : *Matthieu 6:21 Car là où est ton trésor, là aussi sera ton coeur.*</p>
     <input type="text" class="form-control" name="post" >
   </div>
   <div class="form-group">

@@ -124,8 +124,9 @@ class PagesController extends Controller
 			$post = $_POST['post'];
 			$title = $_POST['title'];
 
-			//Define color for the publication
-			if(isset($_POST['firstKeyWord'])){
+			//Format and define color for the publication
+            /*
+            if(isset($_POST['firstKeyWord'])){
 				$keyWord = $_POST['firstKeyWord'];
 				$post = preg_replace("#($keyWord)#", "<span class='text-primary'>$1</span>", $post);
 			}
@@ -138,9 +139,15 @@ class PagesController extends Controller
 				$post = preg_replace("#($keyWord)#", "<span class='text-primary'>$1</span>", $post);
 			}
 
+			 if(isset($_POST['post'])){
+                $post = $_POST['post'];
+                $post = preg_replace("#\*(.*)\*#", "<strong>$1</strong>", $post);
+            }
+			 */
+
 
 			$this->loadModel("Post");
-			$this->Post->createPost($user['id'], $title, $post);
+			$this->Post->createPost($user['id'], $title, $post, $_POST['firstKeyWord'], $_POST['secondKeyWord'], $_POST['thirdKeyWord']);
 			$_SESSION['flash']['success'] = "Merçi pour votre publication, un email vous sera envoyé dès qu'elle sera affichée sur Génération inspirée";
 		}
 

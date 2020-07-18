@@ -18,13 +18,37 @@
 //debug($posts);
 foreach($posts as $post){
     //print_r($post);
+    /*
+    $post->content = preg_replace("#($post->firstKeyWord)#", "<span class='text-primary'>$1</span>", $post->content);
+    $post->content = preg_replace("#($post->secondKeyWord)#", "<span class='text-primary'>$1</span>", $post->content);
+    $post->content = preg_replace("#($post->thirdKeyWord)#", "<span class='text-primary'>$1</span>", $post->content);
+    if(isset($_POST['post'])){
+        $post = $_POST['post'];
+        $post = preg_replace("#\*(.*)\*#", "<strong>$1</strong>", $post);
+    }
+    */
+    $content = $post->content;
+    if(!empty($post->firstKeyWord)){
+        $firstKeyWord = $post->firstKeyWord;
+        $content = preg_replace("#($firstKeyWord)#", "<span class='text-primary'>$1</span>", $post->content);
+        //$content = htmlspecialchars($content);
+    }
+
+    if(!empty($post->secondKeyWord)){
+        $secondKeyWord = $post->secondKeyWord;
+        $content = preg_replace("#($secondKeyWord)#", "<span class='text-primary'>$1</span>", $post->content);
+      //  $content = htmlspecialchars($content);
+    }
+
+    $content = preg_replace("#\*(.*)\*#", "<strong>$1</strong>", $content);
+    //echo $content;
     echo "
     <div class='row d-block mt-5'>
     <h3 class='text-left'>".
     $post->name
     ."</h3>
     <p class='text-justify'>".
-    $post->content
+    $content
     ."</p>
     <h4 class='text-right strong'>".
     getUsernameFromArray($users, $post->user_id)
