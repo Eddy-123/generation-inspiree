@@ -147,7 +147,7 @@ class PagesController extends Controller
 
 
 			$this->loadModel("Post");
-			$this->Post->createPost($user['id'], $title, $post, $_POST['firstKeyWord'], $_POST['secondKeyWord'], $_POST['thirdKeyWord']);
+			$this->Post->createPost($user['id'], $title, $post);
 			$_SESSION['flash']['success'] = "Merçi pour votre publication, un email vous sera envoyé dès qu'elle sera affichée sur Génération inspirée";
 		}
 

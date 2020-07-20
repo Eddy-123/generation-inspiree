@@ -18,6 +18,15 @@ if(session_status() == PHP_SESSION_NONE){
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL.DS.'css'.DS.'style.css' ?>">
 
     <title><?= isset($title_for_layout) ? $title_for_layout : "Génération Inspiree"?></title>
+
+      <!-- Place inside the <head> of your HTML -->
+      <script src="https://cdn.tiny.cloud/1/o69cgnwxudbil0l7q0dnyiwjeoufx5i2uoyxtjf9pin4ilop/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+      <script type="text/javascript">
+          tinymce.init({
+              selector: "textarea"
+          });
+      </script>
+
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,6 +72,43 @@ unset($_SESSION['flash']);
 <?= $content_for_layout."<br><br>" ?>
 </div>
 
+  <footer>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                  <h3>Carte du site</h3>
+                  <ul class="list-unstyled three-column">
+                      <?php foreach ($pages as $page) { ?>
+                          <li class="">
+                              <a class="" href="<?= BASE_URL.'/pages/view/'.$page->id ?>"><?= $page->name ?></a>
+                          </li>
+                      <?php } ?>
+                      <?php if(isset($_SESSION['auth'])): ?>
+                          <li class=""><a class="" href="<?= BASE_URL.DS.'pages/account' ?>">Mon compte</a></li>
+                          <li class=""><a class="" href="<?= BASE_URL.DS.'pages/disconnect' ?>">Déconnexion</a></li>
+                      <?php else : ?>
+                          <li class=""><a class="" href="<?= BASE_URL.DS.'pages/register' ?>">S'inscrire</a></li>
+                          <li class=""><a class="" href="<?= BASE_URL.DS.'pages/login' ?>">Se connecter</a></li>
+                      <?php endif; ?>
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <h3>Description</h3>
+                  <p class="toure">Génération inspirée</p>
+              </div>
+              <div class="col-md-4">
+                  <h3>Nous retrouver sur facebook</h3>
+                  <p>
+                      <button>
+                          <a href="#">
+                              Facebook <i class="fab fa-facebook-f"></i>
+                          </a>
+                      </button>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

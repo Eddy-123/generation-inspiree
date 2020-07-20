@@ -1,6 +1,12 @@
 <h1>Bienvenu(e) sur Génération inspirée <?= $username ?></h1>
 <p>Avez-vous une inspiration à partager avec votre génération inspirée ?</p>
-
+<h4>Recommandations :</h4>
+<div>
+    <ul>
+        <li>Veuillez colorer les mots-clés en bleu</li>
+        <li>Veuillez mettre les versets en gras, si vous en utilisez</li>
+    </ul>
+</div>
 <form action="" method="POST">
 <div class="form-group">
     <label for="">Titre de la publication :</label>
@@ -8,20 +14,7 @@
   </div>
 <div class="form-group">
     <label for="">Text à publier :</label>
-    <p>Les versets seront entourés d'étoiles : *Matthieu 6:21 Car là où est ton trésor, là aussi sera ton coeur.*</p>
-    <input type="text" class="form-control" name="post" >
-  </div>
-  <div class="form-group">
-    <label for="">Premier mot clé :</label>
-    <input type="text" class="form-control" name="firstKeyWord" >
-  </div>
-  <div class="form-group">
-    <label for="">Deuxième mot clé :</label>
-    <input type="text" class="form-control" name="secondKeyWord" >
-  </div>
-  <div class="form-group">
-    <label for="">Troisième mot clé :</label>
-    <input type="text" class="form-control" name="thirdKeyWord" >
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="post"></textarea>
   </div>
 
   <button type="submit" class="btn btn-primary">Partager</button>
@@ -40,9 +33,9 @@ foreach($posts as $post){
   <p class='text-justify'>".
   $post->content
   ."</p>
-  <br>
-  Date
-  </h4>
+  <br>".
+      translateDate($post->created)
+  ."</h4>
   <hr>
   </div>
   ";
