@@ -39,7 +39,7 @@ class PagesController extends Controller
 		$errors = array();
 		if(!empty($_POST)){
 			$this->loadModel('User');
-			if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])){
+			if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9-]+$/', $_POST['username'])){
 				$errors['username'] = "Votre pseudo n'est pas valide (alphanumerique)";
 			} else {
 				$username = $_POST['username'];
@@ -123,28 +123,6 @@ class PagesController extends Controller
 		if(!empty($_POST) && !empty($_POST['post']) && !empty($_POST['title'])){
 			$post = $_POST['post'];
 			$title = $_POST['title'];
-
-			//Format and define color for the publication
-            /*
-            if(isset($_POST['firstKeyWord'])){
-				$keyWord = $_POST['firstKeyWord'];
-				$post = preg_replace("#($keyWord)#", "<span class='text-primary'>$1</span>", $post);
-			}
-			if(isset($_POST['secondKeyWord'])){
-				$keyWord = $_POST['secondKeyWord'];
-				$post = preg_replace("#($keyWord)#", "<span class='text-primary'>$1</span>", $post);
-			}
-			if(isset($_POST['thirdKeyWord'])){
-				$keyWord = $_POST['thirdKeyWord'];
-				$post = preg_replace("#($keyWord)#", "<span class='text-primary'>$1</span>", $post);
-			}
-
-			 if(isset($_POST['post'])){
-                $post = $_POST['post'];
-                $post = preg_replace("#\*(.*)\*#", "<strong>$1</strong>", $post);
-            }
-			 */
-
 
 			$this->loadModel("Post");
 			$this->Post->createPost($user['id'], $title, $post);

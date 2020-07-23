@@ -25,5 +25,3 @@
 		<?php } ?>
 	</tbody>
 </table>
-
-<a class="btn btn-primary" href="<?= 'admin/posts/edit' ?>">Ajouter un article</a>

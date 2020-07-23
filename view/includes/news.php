@@ -39,19 +39,20 @@ foreach($posts as $post){
         $content = preg_replace("#($secondKeyWord)#", "<span class='text-primary'>$1</span>", $post->content);
       //  $content = htmlspecialchars($content);
     }
-
-    $content = preg_replace("#\*(.*)\*#", "<strong>$1</strong>", $content);
-    //echo $content;
+    $userName = getUsernameFromArray($users, $post->user_id);
+    if ($userName == "Generation-inspiree"){
+        $userName = "Génération inspirée";
+    }
     echo "
     <div class='row d-block mt-5'>
     <h3 class='text-left'>".
-    $post->name
+        $post->name
     ."</h3>
     <p class='text-justify'>".
     $content
     ."</p>
     <h4 class='text-right strong'>".
-    getUsernameFromArray($users, $post->user_id)
+        $userName
     ."<br>".
     translateDate($post->created)
     ."</h4>

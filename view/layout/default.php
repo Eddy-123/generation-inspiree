@@ -48,6 +48,9 @@ if(session_status() == PHP_SESSION_NONE){
       <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/register' ?>">S'inscrire</a></li>
     <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'pages/login' ?>">Se connecter</a></li>
     <?php endif; ?>
+        <?php if (isset($_SESSION['auth']) && $_SESSION['auth'] == "Génération Inspirée"): ?>
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL.DS.'posts/admin_index' ?>">Administrateur</a></li>
+        <?php endif; ?>
     </ul>
   </div>
 </nav>
@@ -94,13 +97,15 @@ unset($_SESSION['flash']);
               </div>
               <div class="col-md-4">
                   <h3>Description</h3>
-                  <p class="toure">Génération inspirée</p>
+                  <p class="toure">Génération inspirée est un cercle de
+                      réflexion qui a pour but de prodiguer des conseils afin d'encourager les croyants dans la foi, aider particulièrement la
+                   jeunesse à prendre conscience de sa place dans l'église et dans la société, enfin apporter un plus à nos lecteurs</p>
               </div>
               <div class="col-md-4">
                   <h3>Nous retrouver sur facebook</h3>
                   <p>
                       <button>
-                          <a href="#">
+                          <a style="color: #0894d1" href="https://www.facebook.com/G%C3%A9n%C3%A9ration-inspir%C3%A9e-104352227597722">
                               Facebook <i class="fab fa-facebook-f"></i>
                           </a>
                       </button>
